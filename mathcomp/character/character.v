@@ -817,7 +817,9 @@ Qed.
 End IrrClass.
 
 Arguments cfReg {gT} B%g.
-Prenex Implicits cfIirr.
+Prenex Implicits cfIirr irrK.
+Arguments irrP {gT G xi}.
+Arguments irr_reprP {gT G xi}.
 Arguments irr_inj {gT G} [x1 x2].
 
 Section IsChar.
@@ -1334,6 +1336,8 @@ Qed.
 
 End OrthogonalityRelations.
 
+Prenex Implicits irr_class class_Iirr irr_classK.
+Arguments class_IirrK {gT G%G} [xG%g] GxG : rename.
 Arguments character_table {gT} G%g.
 
 Section InnerProduct.
@@ -2258,6 +2262,7 @@ Qed.
 End Aut.
 
 Arguments aut_Iirr_inj {gT G} u [i1 i2] : rename.
+Arguments conjC_IirrK {gT G} i : rename.
 
 Section Coset.
 

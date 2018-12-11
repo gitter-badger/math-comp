@@ -29,7 +29,7 @@ Require Import poly polydiv.
 (*   char_poly A  == the characteristic polynomial of A.                      *)
 (* char_poly_mx A == a matrix whose determinant is char_poly A.               *)
 (*  companionmx p == a matrix whose char_poly is p                            *)
-(*   mxminpoly A  == the minimal polynomial of A, i.e., the smallest monic     *)
+(*   mxminpoly A  == the minimal polynomial of A, i.e., the smallest monic    *)
 (*                   polynomial that annihilates A (A must be nontrivial).    *)
 (* degree_mxminpoly A == the (positive) degree of mxminpoly A.                *)
 (* mx_inv_horner A == the inverse of horner_mx A for polynomials of degree    *)
@@ -116,8 +116,9 @@ Canonical rVpoly_linear := Linear rVpoly_is_linear.
 
 End RowPoly.
 
+Prenex Implicits rVpoly rVpolyK.
 Arguments poly_rV {R d}.
-Prenex Implicits rVpoly.
+Arguments poly_rV_K {R d} [p] le_p_d.
 
 Section Resultant.
 
@@ -431,13 +432,11 @@ rewrite (big_morph _ (fun p q => hornerM p q a) (hornerC 1 a)).
 by apply: eq_bigr => i _; rewrite !mxE !(hornerE, hornerMn).
 Qed.
 
-Section Companion.
-
 Definition companionmx (R : ringType) (p : seq R) (d := (size p).-1) :=
   \matrix_(i < d, j < d)
     if (i == d.-1 :> nat) then - p`_j else (i.+1 == j :> nat)%:R.
 
-Lemma companionmxK (R : comRingType) (p : {poly R}) :
+Lemma companionmxK {R : comRingType} (p : {poly R}) :
    p \is monic -> char_poly (companionmx p) = p.
 Proof.
 pose D n : 'M[{poly R}]_n := \matrix_(i, j)
@@ -486,8 +485,6 @@ rewrite ltn_eqF ?big1 ?addr0 1?eq_sym //; last first.
   by rewrite -ltnS prednK // (leq_trans  _ i_small).
 by move=> k /negPf ki_eqF; rewrite !mxE eqxx ki_eqF mul0r.
 Qed.
-
-End Companion.
 
 Section MinPoly.
 
@@ -638,6 +635,8 @@ by rewrite -scalerA mulmxDr mul_mx_scalar mulmxA -IHp -scalemxAl Av_av.
 Qed.
 
 End MinPoly.
+
+Arguments mx_inv_hornerK {F n' A} [B] AnB.
 
 (* Parametricity. *)
 Section MapRingMatrix.

@@ -1675,7 +1675,7 @@ Qed.
 
 End PolynomialTheory.
 
-Prenex Implicits polyC Poly lead_coef root horner polyOver.
+Prenex Implicits polyC polyCK Poly polyseqK lead_coef root horner polyOver.
 Arguments monic {R}.
 Notation "\poly_ ( i < n ) E" := (poly n (fun i => E)) : ring_scope.
 Notation "c %:P" := (polyC c) : ring_scope.

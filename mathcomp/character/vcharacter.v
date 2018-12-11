@@ -890,15 +890,13 @@ Lemma cfdot_todirrE (phi: 'CF(G)) i (phi_i := dchi (to_dirr phi i)) :
 Proof. by rewrite cfdotZr rmorph_sign mulrC -scalerA signrZK. Qed.
 
 Lemma cfun_sum_dconstt (phi : 'CF(G)) :
-  phi \in 'Z[irr G] ->
+    phi \in 'Z[irr G] ->
   phi = \sum_(i in dirr_constt phi) '[phi, dchi i] *: dchi i.
 Proof.
-(* GG -- rewrite pattern fails in trunk
-  move=> PiZ; rewrite [X in X = _]cfun_sum_constt. *)
-move=> PiZ; rewrite {1}[phi]cfun_sum_constt.
+move=> PiZ; rewrite [LHS]cfun_sum_constt.
 rewrite (reindex (to_dirr phi))=> [/= |]; last first.
   by exists (@of_irr _)=> //; apply: of_irrK .
-by apply: eq_big=> i; rewrite ?irr_constt_to_dirr // cfdot_todirrE.
+by apply: eq_big => i; rewrite ?irr_constt_to_dirr // cfdot_todirrE.
 Qed.
 
 Lemma cnorm_dconstt (phi : 'CF(G)) :
@@ -981,3 +979,6 @@ by case: (i1 == j) eq_phi_psi; case: (i2 == j); do 2!case: (_ (+) c).
 Qed.
 
 End Norm1vchar.
+
+Prenex Implicits ndirr ndirrK to_dirr to_dirrK of_irr.
+Arguments of_irrK {gT G phi} [i] phi_i : rename.

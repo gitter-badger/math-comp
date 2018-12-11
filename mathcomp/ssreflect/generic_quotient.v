@@ -147,6 +147,8 @@ Definition QuotType_clone (Q : Type) qT cT
 
 End QuotientDef.
 
+Arguments repr_ofK {T qT}.
+
 (****************************)
 (* Protecting some symbols. *)
 (****************************)
@@ -660,6 +662,8 @@ Canonical EquivQuot.eqType.
 Canonical EquivQuot.choiceType.
 Canonical EquivQuot.eqQuotType.
 
+Arguments EquivQuot.ereprK {D C CD DC eD encD}.
+
 Notation "{eq_quot e }" :=
 (@EquivQuot.type_of _ _ _ _ _ _ (Phantom (rel _) e)) : quotient_scope.
 Notation "x == y %[mod_eq r ]" := (x == y %[mod {eq_quot r}]) : quotient_scope.
@@ -693,7 +697,7 @@ Variables (eD : equiv_rel D) (encD : encModRel CD DC eD).
 Notation eC := (encoded_equiv encD).
 
 Fact eq_quot_countMixin : Countable.mixin_of {eq_quot encD}.
-Proof. exact: CanCountMixin (@EquivQuot.ereprK _ _ _ _ _ _). Qed.
+Proof. exact: CanCountMixin EquivQuot.ereprK. Qed.
 Canonical eq_quot_countType := CountType {eq_quot encD} eq_quot_countMixin.
 
 End CountEncodingModuloRel.

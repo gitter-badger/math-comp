@@ -875,6 +875,7 @@ End ZmoduleTheory.
 
 Arguments addrI {V} y [x1 x2].
 Arguments addIr {V} x [x1 x2].
+Arguments opprK {V}.
 Arguments oppr_inj {V} [x1 x2].
 
 Module Ring.
@@ -3033,6 +3034,7 @@ End ClosedPredicates.
 
 End UnitRingTheory.
 
+Arguments invrK {R}.
 Arguments invr_inj {R} [x1 x2].
 
 Section UnitRingMorphism.
@@ -5372,7 +5374,8 @@ Arguments addrI {V} y [x1 x2].
 Arguments addIr {V} x [x1 x2].
 Arguments subrI {V} y [x1 x2].
 Arguments subIr {V} x [x1 x2].
-Definition opprK := opprK.
+Definition opprK := @opprK.
+Arguments opprK {V}.
 Definition oppr_inj := @oppr_inj.
 Arguments oppr_inj {V} [x1 x2].
 Definition oppr0 := oppr0.
@@ -5556,7 +5559,8 @@ Definition divIr := divIr.
 Definition telescope_prodr := telescope_prodr.
 Definition commrV := commrV.
 Definition unitrE := unitrE.
-Definition invrK := invrK.
+Definition invrK := @invrK.
+Arguments invrK {R}.
 Definition invr_inj := @invr_inj.
 Arguments invr_inj {R} [x1 x2].
 Definition unitrV := unitrV.

@@ -916,7 +916,7 @@ Arguments row_mxA {R m n1 n2 n3 A1 A2 A3}.
 Arguments col_mxA {R m1 m2 m3 n A1 A2 A3}.
 Arguments block_mxA
   {R m1 m2 m3 n1 n2 n3 A11 A12 A13 A21 A22 A23 A31 A32 A33}.
-Prenex Implicits castmx trmx lsubmx rsubmx usubmx dsubmx row_mx col_mx.
+Prenex Implicits castmx trmx trmxK lsubmx rsubmx usubmx dsubmx row_mx col_mx.
 Prenex Implicits block_mx ulsubmx ursubmx dlsubmx drsubmx.
 Prenex Implicits mxvec vec_mx mxvec_indexP mxvecK vec_mxK.
 
@@ -2642,7 +2642,7 @@ Qed.
 
 End MatrixInv.
 
-Prenex Implicits unitmx invmx.
+Prenex Implicits unitmx invmx invmxK.
 
 Canonical matrix_countUnitRingType (R : countComUnitRingType) n :=
   [countUnitRingType of 'M[R]_n.+1].

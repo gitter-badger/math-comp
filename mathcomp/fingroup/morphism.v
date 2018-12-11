@@ -873,6 +873,7 @@ Notation "f @*^-1 M" := (morphpre_group (MorPhantom f) M) : Group_scope.
 Notation "f @: D" := (morph_dom_group f D) : Group_scope.
 
 Arguments injmP {aT rT D f}.
+Arguments morphpreK {aT rT D f} [R] sRf.
 
 Section IdentityMorphism.
 
@@ -1536,4 +1537,7 @@ Lemma isog_subg : isog G [subg G].
 Proof. exact: isom_isog isom_subg. Qed.
 
 End SubMorphism.
+
+Arguments sgvalmK {gT G} A.
+Arguments subgmK {gT G} [A] sAG.
 

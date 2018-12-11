@@ -4790,11 +4790,16 @@ Qed.
 
 End ClosedFieldTheory.
 
-Notation "n .-root" := (@nthroot _ n) (at level 2, format "n .-root") : ring_scope.
+Notation "n .-root" := (@nthroot _ n)
+  (at level 2, format "n .-root") : ring_scope.
 Notation sqrtC := 2.-root.
 Notation "'i" := (@imaginaryC _) (at level 0) : ring_scope.
 Notation "'Re z" := (Re z) (at level 10, z at level 8) : ring_scope.
 Notation "'Im z" := (Im z) (at level 10, z at level 8) : ring_scope.
+
+Arguments conjCK {C} x.
+Arguments sqrCK {C} [x] le0x.
+Arguments sqrCK_P {C x}.
 
 End Theory.
 

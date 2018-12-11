@@ -300,13 +300,13 @@ Lemma repr_mxM : {in G &, {morph rG : x y / (x * y)%g >-> x *m y}}.
 Proof. by case: rG => r []. Qed.
 
 Lemma repr_mxK m x :
-  x \in G ->  cancel ((@mulmx _ m n n)^~ (rG x)) (mulmx^~ (rG x^-1)).
+  x \in G ->  cancel ((@mulmx R m n n)^~ (rG x)) (mulmx^~ (rG x^-1)).
 Proof.
 by move=> Gx U; rewrite -mulmxA -repr_mxM ?groupV // mulgV repr_mx1 mulmx1.
 Qed.
 
 Lemma repr_mxKV m x :
-  x \in G -> cancel ((@mulmx _ m n n)^~ (rG x^-1)) (mulmx^~ (rG x)).
+  x \in G -> cancel ((@mulmx R m n n)^~ (rG x^-1)) (mulmx^~ (rG x)).
 Proof. by rewrite -groupV -{3}[x]invgK; apply: repr_mxK. Qed.
 
 Lemma repr_mx_unit x : x \in G -> rG x \in unitmx.
@@ -821,7 +821,11 @@ Arguments regular_repr R {gT} G%g.
 
 Arguments centgmxP {R gT G n rG f}.
 Arguments rkerP {R gT G n rG x}.
-Prenex Implicits gring_mxK.
+Arguments repr_mxK {R gT G%G n%N} rG {m%N} [x%g] Gx.
+Arguments repr_mxKV {R gT G%G n%N} rG {m%N} [x%g] Gx.
+Arguments gring_valK {gT G%G} i%R : rename.
+Arguments gring_indexK {gT G%G} x%g.
+Arguments gring_mxK {R gT G%G} v%R : rename.
 
 Section ChangeOfRing.
 
@@ -2377,7 +2381,16 @@ Arguments mxsimple_isoP {gT G n rG U V}.
 Arguments socleP {gT G n rG sG0 W W'}.
 Arguments mx_abs_irrP {gT G n rG}.
 
+Arguments val_submod {n U m} W.
+Arguments in_submod {n} U {m} W.
+Arguments val_submodK {n U m} W : rename.
+Arguments in_submodK {n U m} [W] sWU.
 Arguments val_submod_inj {n U m} [W1 W2] : rename.
+
+Arguments val_factmod {n U m} W.
+Arguments in_factmod {n} U {m} W.
+Arguments val_factmodK {n U m} W : rename.
+Arguments in_factmodK {n} U {m} [W] sWU.
 Arguments val_factmod_inj {n U m} [W1 W2] : rename.
 
 Section Proper.
@@ -4671,16 +4684,28 @@ Arguments socleP {F gT G n rG sG0 W W'}.
 Arguments mx_abs_irrP {F gT G n rG}.
 Arguments socle_rsimP {F gT G n rG sG W1 W2}.
 
+Arguments val_submod {F n U m} W.
+Arguments in_submod {F n} U {m} W.
+Arguments val_submodK {F n U m} W : rename.
+Arguments in_submodK {F n U m} [W] sWU.
 Arguments val_submod_inj {F n U m} [W1 W2] : rename.
+
+Arguments val_factmod {F n U m} W.
+Arguments in_factmod {F n} U {m} W.
+Arguments val_factmodK {F n U m} W : rename.
+Arguments in_factmodK {F n} U {m} [W] sWU.
 Arguments val_factmod_inj {F n U m} [W1 W2] : rename.
 
 Notation "'Cl" := (Clifford_action _) : action_scope.
 
+Arguments gring_row {R gT G} A.
+Arguments gring_rowK {F gT G} [A] RG_A.
+
 Bind Scope irrType_scope with socle_sort.
 Notation "[ 1 sG ]" := (principal_comp sG) : irrType_scope.
 Arguments irr_degree {F gT G%G sG} i%irr.
-Arguments irr_repr [F gT G%G sG] i%irr _%g : extra scopes.
-Arguments irr_mode [F gT G%G sG] i%irr z%g : rename.
+Arguments irr_repr {F gT G%G sG} i%irr _%g : extra scopes.
+Arguments irr_mode {F gT G%G sG} i%irr z%g : rename.
 Notation "''n_' i" := (irr_degree i) : group_ring_scope.
 Notation "''R_' i" := (Wedderburn_subring i) : group_ring_scope.
 Notation "''e_' i" := (Wedderburn_id i) : group_ring_scope.
@@ -5556,6 +5581,11 @@ Lemma gen_mx_faithful : mx_faithful rGA = mx_faithful rG.
 Proof. by rewrite /mx_faithful rker_gen. Qed.
 
 End GenField.
+
+Arguments in_gen {F gT G n' rG A} irrG cGA {m1} W.
+Arguments val_gen {F gT G n' rG A} irrG cGA {m1} W.
+Arguments in_genK {F gT G n' rG A} irrG cGA {m1} W : rename.
+Arguments val_genK {F gT G n' rG A} irrG cGA {m1} W : rename.
 
 Section DecideGenField.
 

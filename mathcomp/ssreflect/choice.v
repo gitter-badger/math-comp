@@ -141,6 +141,9 @@ Proof. by case. Qed.
 
 End OtherEncodings.
 
+Prenex Implicits seq_of_opt tag_of_pair pair_of_tag opair_of_sum sum_of_opair.
+Prenex Implicits seq_of_optK tag_of_pairK pair_of_tagK opair_of_sumK.
+
 (* Generic variable-arity tree type, providing an encoding target for         *)
 (* miscellaneous user datatypes. The GenTree.tree type can be combined with   *)
 (* a sigT type to model multi-sorted concrete datatypes.                      *)

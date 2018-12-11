@@ -282,7 +282,7 @@ Qed.
 
 End Theory.
 
-Prenex Implicits tperm.
+Prenex Implicits tperm permK permKV tpermK.
 
 Lemma inj_tperm (T T' : finType) (f : T -> T') x y z :
   injective f -> f (tperm x y z) = tperm (f x) (f y) (f z).
@@ -575,6 +575,8 @@ by rewrite add1n eqSS eq_sym; case: eqP.
 Qed.
 
 End LiftPerm.
+
+Prenex Implicits lift_perm lift_permK.
 
 
 
